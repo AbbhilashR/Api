@@ -5,7 +5,6 @@ class RoleChoice(Enum):
     ow = "Owner"
     Hi = "Hirer"
     Ad = "Admin"
- 
 class user(models.Model):
     userid = models.AutoField(primary_key=True)
     username = models.CharField(max_length=50)
@@ -27,7 +26,8 @@ class user(models.Model):
         db_table = "user"
 
 class car(models.Model):
-    regid = models.AutoField(primary_key=True)
+ 
+    carid = models.AutoField(primary_key=True)
     userid=models.ForeignKey(user,on_delete=models.CASCADE)
     carmake = models.CharField(max_length=50)
     carmodel = models.CharField(max_length=50)
@@ -43,13 +43,13 @@ class car(models.Model):
     class Meta:
         db_table = "car"
 
-    def __int__(self):
-        return self.regid
+    # def __str__(self):
+    #     return self.carid,self.carmake,self.carmodel
 
 class booking(models.Model):
     bookingid = models.AutoField(primary_key=True)
     userid=models.ForeignKey(user,on_delete=models.CASCADE)
-    regid=models.ForeignKey(car,on_delete=models.CASCADE)
+    carid=models.ForeignKey(car,on_delete=models.CASCADE)
     startdate=models.DateTimeField()
     returndate=models.DateTimeField()
     extratime=models.DateTimeField()
@@ -57,7 +57,10 @@ class booking(models.Model):
     ismanual=models.BooleanField()
 
     class Meta:
-        db_table = "bookings"
+        db_table = "booking"
+
+    # def __str__(self):
+    #     return self.bookingid
 
 class rating(models.Model):
     bookingid=models.ForeignKey(booking,on_delete=models.CASCADE)

@@ -52,6 +52,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+     # CORS
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware'
+
 ]
 
 ROOT_URLCONF = 'car_rental.urls'
@@ -84,7 +89,7 @@ DATABASES = {
         'NAME': 'api_car_rental',
         'USER':'root',
         'PASSWORD':'',
-        'HOST':'localhost',
+        'HOST':'127.0.0.1',
         'PORT':'3306',
     }
 }
